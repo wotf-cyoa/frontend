@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Ruby Adventure</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="container">
+    <div id="script-results"></div>
+    <input id="script-input" type="text">
+    <h5 id="conn-status">
+      <span class="warning">Server Disconnected</span>
+    </h5>
+  </div>
+  <script src="http://localhost:8888/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

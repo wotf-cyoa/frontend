@@ -1,0 +1,25 @@
+#conn-status {
+  text-align: center;
+}
+
+span.success,
+span.warning {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px;
+}
+
+span.success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border-color: #D6E9C6;
+}
+
+span.warning {
+  color: #C09853;
+  background-color: #FCF8E3;
+  border-color: #FBEED5;
+}
