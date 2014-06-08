@@ -8,11 +8,11 @@ var tones = io.of('/ruby').on('connection', function(socket) {
 
         exec('ruby', ['-e', data.script], function (err, stdout, stderr) {
             console.log(stdout);
-            console.log(err || stderr);
+            console.log(stderr);
 
             socket.emit('scriptOut', {
                 result: stdout,
-                error: err || stderr
+                error: stderr
             });
         });
     });
