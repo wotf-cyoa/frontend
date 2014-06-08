@@ -3,6 +3,16 @@ var toggleConnectionStatus = function(display) {
     conn_status.innerHTML = display;
 };
 
+var addToConsole = function(console, value, type) {
+    var classes = 'script script-' + type;
+    value = value.replace(/&/g, '&amp;')
+                 .replace(/>/g, '&gt;')
+                 .replace(/</g, '&lt;')
+                 .replace(/"/g, '&quot;')
+                 .replace(/'/g, '&apos;');
+    console.innerHTML += '<p class="' + classes + '">' + value + '</p>';
+};
+
 var socket = io.connect('http://localhost:8888/ruby');
 
 socket.on('connect', function() {
@@ -13,13 +23,13 @@ socket.on('connect', function() {
     var scriptInput = document.getElementById('script-input');
 
     socket.on('ready', function(data) {
-        console.log(data);
-        scriptResults.innerHTML += '<p>' + data.result + '</p>';
+        window.console.log(data);
+        addToConsole(scriptResults, data.result, 'welcome');
     });
 
     socket.on('scriptOut', function(data) {
-        console.log(data);
-        scriptResults.innerHTML += '<p>' + (data.result || 'Error') + '</p>';
+        window.console.log(data);
+        addToConsole(scriptResults, data.error || data.result, 'out');
     });
 
     scriptInput.addEventListener('keypress', function (e) {
@@ -27,6 +37,7 @@ socket.on('connect', function() {
         if (key == 13) {
             e.preventDefault();
             socket.emit('scriptIn', { script: scriptInput.value });
+            addToConsole(scriptResults, scriptInput.value, 'in');
             scriptInput.value = '';
         }
     });

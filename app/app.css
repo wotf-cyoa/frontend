@@ -1,3 +1,24 @@
+
+.script {
+  font-family: Consolas, sans-serif;
+}
+
+.script-welcome {
+  color: #4444bb;
+}
+
+.script-in {
+  color: #44bb44;
+}
+
+.script-in:before {
+  content: '>> ';
+}
+
+.script-out {
+  color: #bb44bb;
+}
+
 #conn-status {
   text-align: center;
 }
