@@ -55,23 +55,23 @@ body {
   font-size: 16px;
 }
 
-.script {
+.console {
   font-family: Consolas, sans-serif;
 }
 
-.script-welcome {
+.console-welcome {
   color: #4444bb;
 }
 
-.script-in {
+.console-in {
   color: #44bb44;
 }
 
-.script-in:before {
+.console-in:before {
   content: '>> ';
 }
 
-.script-out {
+.console-out {
   color: #bb44bb;
 }
 

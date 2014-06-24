@@ -4,7 +4,7 @@ var toggleConnectionStatus = function(display) {
 };
 
 var addToConsole = function(console, value, type) {
-    var classes = 'script script-' + type;
+    var classes = 'console console-' + type;
     value = value.replace(/&/g, '&amp;')
                  .replace(/>/g, '&gt;')
                  .replace(/</g, '&lt;')
@@ -13,36 +13,36 @@ var addToConsole = function(console, value, type) {
     console.innerHTML += '<p class="' + classes + '">' + value + '</p>';
 };
 
-var handleScriptInput = function(event) {
+var handleconsoleInput = function(event) {
     var key = event.which || event.keyCode;
     if (key == 13) {
         event.preventDefault();
-        socket.emit('scriptInput', { input: scriptInput.value });
-        addToConsole(scriptOutputs, scriptInput.value, 'in');
-        scriptInput.value = '';
+        socket.emit('consoleInput', { input: consoleInput.value });
+        addToConsole(consoleOutputs, consoleInput.value, 'in');
+        consoleInput.value = '';
     }
 };
 
 var socket = io('http://localhost:8888/ruby'),
-    scriptOutputs = document.getElementById('script-outputs'),
-    scriptInput = document.getElementById('script-input');
+    consoleOutputs = document.getElementById('console-outputs'),
+    consoleInput = document.getElementById('console-input');
 
 socket.on('connect', function() {
     toggleConnectionStatus('<span class="success">Server Connected</span>');
-    scriptInput.addEventListener('keypress', handleScriptInput, false);
+    consoleInput.addEventListener('keypress', handleconsoleInput, false);
 });
 
 socket.on('disconnect', function() {
     toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
-    scriptInput.removeEventListener('keypress', handleScriptInput, false);
+    consoleInput.removeEventListener('keypress', handleconsoleInput, false);
 });
 
 socket.on('ready', function(data) {
     window.console.log(data);
-    addToConsole(scriptOutputs, data.output, 'welcome');
+    addToConsole(consoleOutputs, data.output, 'welcome');
 });
 
-socket.on('scriptOutput', function(data) {
+socket.on('consoleOutput', function(data) {
     window.console.log(data);
-    addToConsole(scriptOutputs, data.output, 'out');
+    addToConsole(consoleOutputs, data.output, 'out');
 });
