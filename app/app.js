@@ -23,14 +23,13 @@ var handleInput = function(event) {
     }
 };
 
-var socket = io.connect('http://localhost:8888/ruby'),
+var socket = io('http://localhost:8888/ruby'),
     scriptResults = document.getElementById('script-results'),
     scriptInput = document.getElementById('script-input');
 
 socket.on('connect', function() {
 
     toggleConnectionStatus('<span class="success">Server Connected</span>');
-
 
     socket.on('ready', function(data) {
         window.console.log(data);
