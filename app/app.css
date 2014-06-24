@@ -29,7 +29,7 @@ span.warning {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
-  border: 1px solid rgba(0, 0, 0, 0);
+  border: 1px solid transparent;
   border-radius: 4px;
 }
 
