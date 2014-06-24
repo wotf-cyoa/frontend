@@ -3,14 +3,14 @@ var app = require('http').createServer(),
     exec = require('child_process').execFile;
 
 var tones = io.of('/ruby').on('connection', function(socket) {
-    socket.on('consoleInput', function(data) {
+    socket.on('terminalInput', function(data) {
         console.log(data);
 
         exec('ruby', ['-e', data.input], function (err, stdout, stderr) {
             console.log(stdout);
             console.log(stderr);
 
-            socket.emit('consoleOutput', {
+            socket.emit('terminalOutput', {
                 output: stderr || stdout
             });
         });

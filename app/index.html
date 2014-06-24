@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>wotf-cyoa</title
+  <title>wotf-cyoa</title>
   <meta charset="utf-8">
   <meta name="description" content="Wizards of the Future: Craft Your Own Adventure">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,9 +13,44 @@
     <h5 id="conn-status">
       <span class="warning">Server Disconnected</span>
     </h5>
-    <div id="console">
-      <div id="console-outputs"></div>
-      <input id="console-input" type="text">
+    <div id="terminal">
+      <div id="terminal-outputs"></div>
+      <input id="terminal-input" type="text" autofocus>
+      <span id="terminal-prompt">&gt;&gt; </span>
+    </div>
+    <div id="inventory">
+      <div id="item-1" class="item"></div>
+      <div id="item-2" class="item"></div>
+      <div id="item-3" class="item"></div>
+      <div id="item-4" class="item"></div>
+      <div id="item-5" class="item"></div>
+    </div>
+    <div id="source">
+      <div class="source-file">
+        <input type="radio" id="game-rb" name="source-files" checked>
+        <label for="game-rb">game.rb</label>
+        <div class="source-file-content">
+          <p>puts "game.rb"</p>
+        </div>
+      </div>
+      <div class="source-file">
+        <input type="radio" id="objects-json" name="source-files">
+        <label for="objects-json">objects.json</label>
+        <div class="source-file-content">
+          <p>puts "objects.json"</p>
+        </div>
+      </div>
+      <div class="source-file">
+        <input type="radio" id="config-yml" name="source-files">
+        <label for="config-yml">config.yml</label>
+        <div class="source-file-content">
+          <p>puts "config.yml"</p>
+        </div>
+      </div>
+      <div id="source-actions">
+        <button id="source-action-save">Save</button>
+        <button id="source-action-run">Run</button>
+      </div>
     </div>
   </div>
   <script src="http://localhost:8888/socket.io/socket.io.js"></script>

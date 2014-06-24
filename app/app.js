@@ -3,46 +3,62 @@ var toggleConnectionStatus = function(display) {
     connStatus.innerHTML = display;
 };
 
-var addToConsole = function(console, value, type) {
-    var classes = 'console console-' + type;
+var addToTerminal = function(value, type) {
+    var classes = 'outputs outputs-' + type;
     value = value.replace(/&/g, '&amp;')
                  .replace(/>/g, '&gt;')
                  .replace(/</g, '&lt;')
                  .replace(/"/g, '&quot;')
                  .replace(/'/g, '&apos;');
-    console.innerHTML += '<p class="' + classes + '">' + value + '</p>';
+    terminalOutputs.innerHTML += '<p class="' + classes + '">' + value + '</p>';
+    terminalInput.scrollIntoView();
 };
 
-var handleconsoleInput = function(event) {
+var handleterminalInput = function(event) {
     var key = event.which || event.keyCode;
     if (key == 13) {
         event.preventDefault();
-        socket.emit('consoleInput', { input: consoleInput.value });
-        addToConsole(consoleOutputs, consoleInput.value, 'in');
-        consoleInput.value = '';
+        socket.emit('terminalInput', { input: terminalInput.value });
+        addToTerminal(terminalInput.value, 'input');
+        terminalInput.value = '';
     }
 };
 
+var handleFileRun = function(event) {
+    var currentFileContent = document
+        .querySelector('#source .source-file input[type=radio]:checked ~ .source-file-content p')
+        .innerHTML;
+    socket.emit('terminalInput', { input: currentFileContent });
+    addToTerminal(currentFileContent, 'input');
+};
+
 var socket = io('http://localhost:8888/ruby'),
-    consoleOutputs = document.getElementById('console-outputs'),
-    consoleInput = document.getElementById('console-input');
+    terminal = document.getElementById('terminal'),
+    terminalOutputs = document.getElementById('terminal-outputs'),
+    terminalInput = document.getElementById('terminal-input'),
+    sourceActionSave = document.getElementById('source-action-save'),
+    sourceActionRun = document.getElementById('source-action-run');
+
+terminal.addEventListener('click', function(e) { terminalInput.focus() }, false);
+sourceActionSave.addEventListener('click', function(e) { alert('Files saved!') }, false );
+sourceActionRun.addEventListener('click', handleFileRun, false);
 
 socket.on('connect', function() {
     toggleConnectionStatus('<span class="success">Server Connected</span>');
-    consoleInput.addEventListener('keypress', handleconsoleInput, false);
+    terminalInput.addEventListener('keypress', handleterminalInput, false);
 });
 
 socket.on('disconnect', function() {
     toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
-    consoleInput.removeEventListener('keypress', handleconsoleInput, false);
+    terminalInput.removeEventListener('keypress', handleterminalInput, false);
 });
 
 socket.on('ready', function(data) {
     window.console.log(data);
-    addToConsole(consoleOutputs, data.output, 'welcome');
+    addToTerminal(data.output, 'welcome');
 });
 
-socket.on('consoleOutput', function(data) {
+socket.on('terminalOutput', function(data) {
     window.console.log(data);
-    addToConsole(consoleOutputs, data.output, 'out');
+    addToTerminal(data.output, 'output');
 });

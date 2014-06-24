@@ -53,28 +53,22 @@ table {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
+	color: #ffffff;
+	background-color: #333333;
+	overflow: hidden;
 }
 
-.console {
-  font-family: Consolas, sans-serif;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-.console-welcome {
-  color: #4444bb;
+#container {
+	overflow: hidden;
 }
 
-.console-in {
-  color: #44bb44;
-}
-
-.console-in:before {
-  content: '>> ';
-}
-
-.console-out {
-  color: #bb44bb;
-}
-
+/* conn status */
 #conn-status {
   text-align: center;
 }
@@ -83,10 +77,8 @@ span.success,
 span.warning {
   display: block;
   width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
+  padding: 16px;
   border: 1px solid transparent;
-  border-radius: 4px;
 }
 
 span.success {
@@ -99,4 +91,135 @@ span.warning {
   color: #C09853;
   background-color: #FCF8E3;
   border-color: #FBEED5;
+}
+
+/* terminal */
+#terminal {
+  position: absolute;
+  left: 0;
+  right: 50%;
+  top: 50px;
+  bottom: 100px;
+	border-left: 2px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	padding: 15px 10px;
+  font-family: Consolas, sans-serif;
+	overflow-y: auto;
+}
+
+#terminal-input {
+  width: 100%;
+	margin: 0;
+	padding: 6px 0 6px 27px;
+	color: #ffffff;
+	font-family: Consolas, sans-serif;
+	font-size: 100%;
+	background-color: #333333;
+	border: none;
+}
+
+#terminal-input:focus,
+#terminal-input:active {
+	outline: none;
+}
+
+#terminal-prompt {
+	padding: 6px 0;
+	display: block;
+	margin-top: -30px;
+}
+
+#terminal .outputs {
+	padding: 6px 0;
+}
+
+#terminal .outputs-welcome {
+  color: #8888bb;
+}
+
+#terminal .outputs-input {
+  color: #88bb88;
+}
+
+#terminal .outputs-input:before {
+  content: '>> ';
+}
+
+#terminal .outputs-output {
+  color: #bb88bb;
+}
+
+/* inventory */
+#inventory {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 50%;
+	border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+}
+
+#inventory .item {
+	float: left;
+	height: 100%;
+	width: 20%;
+	border-left: 1px solid #cccccc;
+}
+
+/* source */
+#source {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+	border-left: 1px solid #cccccc;
+	border-right: 2px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+	padding: 15px 10px;
+}
+
+#source .source-file {
+	float: left;
+}
+
+#source .source-file label {
+	padding: 6px 4px;
+	background: #555555;
+	border: 1px solid #cccccc;
+	margin-left: 1px;
+	position: relative;
+	left: 1px;
+}
+
+#source .source-file input[type=radio] {
+	display: none;
+}
+
+#source .source-file-content {
+	background: #333333;
+	position: absolute;
+	top: 38px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px 10px;
+	border-top: 1px solid #cccccc;
+}
+
+#source .source-file input[type=radio]:checked ~ label {
+	background: #333333;
+	border-bottom: 1px solid #333333;
+	z-index: 2;
+}
+
+#source .source-file input[type=radio]:checked ~ label ~ .source-file-content {
+	z-index: 1;
+}
+
+#source-actions {
+	float: right;
 }
