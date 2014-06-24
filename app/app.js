@@ -28,23 +28,21 @@ var socket = io('http://localhost:8888/ruby'),
     scriptInput = document.getElementById('script-input');
 
 socket.on('connect', function() {
-
     toggleConnectionStatus('<span class="success">Server Connected</span>');
-
-    socket.on('ready', function(data) {
-        window.console.log(data);
-        addToConsole(scriptResults, data.result, 'welcome');
-    });
-
-    socket.on('scriptOut', function(data) {
-        window.console.log(data);
-        addToConsole(scriptResults, data.error || data.result, 'out');
-    });
-
     scriptInput.addEventListener('keypress', handleInput, false);
+});
 
-    socket.on('disconnect', function() {
-        toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
-        scriptInput.removeEventListener('keypress', handleInput, false);
-    });
+socket.on('disconnect', function() {
+    toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
+    scriptInput.removeEventListener('keypress', handleInput, false);
+});
+
+socket.on('ready', function(data) {
+    window.console.log(data);
+    addToConsole(scriptResults, data.result, 'welcome');
+});
+
+socket.on('scriptOut', function(data) {
+    window.console.log(data);
+    addToConsole(scriptResults, data.error || data.result, 'out');
 });
