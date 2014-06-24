@@ -13,14 +13,24 @@ var addToConsole = function(console, value, type) {
     console.innerHTML += '<p class="' + classes + '">' + value + '</p>';
 };
 
-var socket = io.connect('http://localhost:8888/ruby');
+var handleInput = function(event) {
+    var key = event.which || event.keyCode;
+    if (key == 13) {
+        event.preventDefault();
+        socket.emit('scriptIn', { script: scriptInput.value });
+        addToConsole(scriptResults, scriptInput.value, 'in');
+        scriptInput.value = '';
+    }
+};
+
+var socket = io.connect('http://localhost:8888/ruby'),
+    scriptResults = document.getElementById('script-results'),
+    scriptInput = document.getElementById('script-input');
 
 socket.on('connect', function() {
 
     toggleConnectionStatus('<span class="success">Server Connected</span>');
 
-    var scriptResults = document.getElementById('script-results');
-    var scriptInput = document.getElementById('script-input');
 
     socket.on('ready', function(data) {
         window.console.log(data);
@@ -32,18 +42,10 @@ socket.on('connect', function() {
         addToConsole(scriptResults, data.error || data.result, 'out');
     });
 
-    scriptInput.addEventListener('keypress', function (e) {
-        var key = e.which || e.keyCode;
-        if (key == 13) {
-            e.preventDefault();
-            socket.emit('scriptIn', { script: scriptInput.value });
-            addToConsole(scriptResults, scriptInput.value, 'in');
-            scriptInput.value = '';
-        }
-    });
+    scriptInput.addEventListener('keypress', handleInput, false);
 
     socket.on('disconnect', function() {
         toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
-        scriptInput.removeEventListener('keypress');
+        scriptInput.removeEventListener('keypress', handleInput, false);
     });
 });
