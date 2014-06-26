@@ -1,3 +1,3 @@
 wotf-cyoa
 =========
-Wizards of the Future: Craft Your Own Adventure
+Wizards of the Future: Code Your Own Adventure
