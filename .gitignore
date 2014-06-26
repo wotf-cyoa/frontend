@@ -1,2 +1,8 @@
 # npm dependencies
 node_modules
+
+# OSX filesystem
+.DS_Store
+
+# Generated files
+public
