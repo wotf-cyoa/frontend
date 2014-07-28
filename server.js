@@ -27,9 +27,10 @@ var tones = io.of('/ruby').on('connection', function(socket) {
 
     socket.on('fileInput', function(data) {
         console.log(data);
-        ruby.stdin.write('exec($0)\n', function() {
+        ruby.stdin.write('exec($0)\n');
+        setTimeout(function() {
             ruby.stdin.write(data.input + '\n');
-        });
+        }, 1000);
     });
 
     socket.on('terminalInput', function(data) {
