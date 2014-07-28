@@ -1,20 +1,42 @@
 var app = require('http').createServer(),
     io = require('socket.io').listen(app),
-    exec = require('child_process').execFile;
+    spawn = require('child_process').spawn,
+    fs = require('fs');
 
 var tones = io.of('/ruby').on('connection', function(socket) {
-    socket.on('terminalInput', function(data) {
-        console.log(data);
 
-        exec('ruby', ['-e', data.input], function (err, stdout, stderr) {
-            console.log(stdout);
-            console.log(stderr);
+    var ruby = spawn('irb');
 
-            socket.emit('terminalOutput', {
-                output: stderr || stdout
-            });
+    ruby.stdout.on('data', function(data) {
+        console.log('stdout: ' + data);
+        socket.emit('terminalOutput', {
+            output: data.toString()
         });
     });
+
+    ruby.stderr.on('data', function(data) {
+        console.log('stderr: ' + data);
+        socket.emit('terminalOutput', {
+            output: data.toString()
+        });
+    });
+
+    ruby.on('close', function(code) {
+        console.log('Exit code: ' + code);
+    });
+
+    socket.on('fileInput', function(data) {
+        console.log(data);
+        ruby.stdin.write('exec($0)\n', function() {
+            ruby.stdin.write(data.input + '\n');
+        });
+    });
+
+    socket.on('terminalInput', function(data) {
+        console.log(data);
+        ruby.stdin.write(data.input + '\n');
+    });
+
     socket.emit('ready', {
         output: 'Enter valid ruby code...'
     });
