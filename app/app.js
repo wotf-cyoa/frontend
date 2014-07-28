@@ -31,12 +31,10 @@ var handleterminalInput = function(event) {
     }
 };
 
-var handleFileRun = function(event) {
-    var currentFileContent = editor.getValue();/*document
-        .querySelector('#source .source-file input[type=radio]:checked ~ .source-file-content')
-        .innerHTML;*/
+var handleFileRun = function() {
+    var currentFileContent = editor.getValue();
     socket.emit('fileInput', { input: currentFileContent });
-    addToTerminal(currentFileContent, 'input');
+    addToTerminal('Running game...', 'input');
 };
 
 var socket = io('http://localhost:8888/ruby'),
@@ -63,6 +61,7 @@ socket.on('disconnect', function() {
 socket.on('ready', function(data) {
     window.console.log(data);
     addToTerminal(data.output, 'welcome');
+    handleFileRun();
 });
 
 socket.on('terminalOutput', function(data) {
