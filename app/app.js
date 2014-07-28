@@ -1,3 +1,9 @@
+var editor = ace.edit("game-rb-editor");
+editor.setTheme("ace/theme/monokai");
+editor.getSession().setMode("ace/mode/ruby");
+editor.getSession().setTabSize(2);
+editor.getSession().setUseSoftTabs(true);
+
 var toggleConnectionStatus = function(display) {
     var connStatus = document.getElementById('conn-status');
     connStatus.innerHTML = display;
@@ -9,7 +15,8 @@ var addToTerminal = function(value, type) {
                  .replace(/>/g, '&gt;')
                  .replace(/</g, '&lt;')
                  .replace(/"/g, '&quot;')
-                 .replace(/'/g, '&apos;');
+                 .replace(/'/g, '&apos;')
+                 .replace(/\n/g, '<br>');
     terminalOutputs.innerHTML += '<p class="' + classes + '">' + value + '</p>';
     terminalInput.scrollIntoView();
 };
@@ -25,10 +32,10 @@ var handleterminalInput = function(event) {
 };
 
 var handleFileRun = function(event) {
-    var currentFileContent = document
-        .querySelector('#source .source-file input[type=radio]:checked ~ .source-file-content p')
-        .innerHTML;
-    socket.emit('terminalInput', { input: currentFileContent });
+    var currentFileContent = editor.getValue();/*document
+        .querySelector('#source .source-file input[type=radio]:checked ~ .source-file-content')
+        .innerHTML;*/
+    socket.emit('fileInput', { input: currentFileContent });
     addToTerminal(currentFileContent, 'input');
 };
 
