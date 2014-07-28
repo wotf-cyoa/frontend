@@ -38,8 +38,21 @@ var tones = io.of('/ruby').on('connection', function(socket) {
         ruby.stdin.write(data.input + '\n');
     });
 
-    socket.emit('ready', {
-        output: 'Enter valid ruby code...'
+    socket.on('fileSave', function(data) {
+        console.log(data);
+        fs.writeFile('games/game.rb', data.fileContent, function(err) {
+            socket.emit('fileSaveComplete', {
+                result: err || 'File saved.'
+            });
+        });
+    });
+
+    fs.readFile('games/game.rb', function(err, contents) {
+        console.log(contents);
+        socket.emit('ready', {
+            output: 'Shell ready!',
+            fileContent: contents.toString()
+        });
     });
 });
 

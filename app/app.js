@@ -42,6 +42,11 @@ var handleFileRun = function() {
     addToTerminal('Running game...', 'input');
 };
 
+var handleFileSave = function() {
+    var currentFileContent = editor.getValue();
+    socket.emit('fileSave', { fileContent: currentFileContent });
+};
+
 var socket = io('http://localhost:8888/ruby'),
     terminal = document.getElementById('terminal'),
     terminalOutputs = document.getElementById('terminal-outputs'),
@@ -50,7 +55,7 @@ var socket = io('http://localhost:8888/ruby'),
     sourceActionRun = document.getElementById('source-action-run');
 
 terminal.addEventListener('click', function(e) { terminalInput.focus() }, false);
-sourceActionSave.addEventListener('click', function(e) { alert('Files saved!') }, false );
+sourceActionSave.addEventListener('click', handleFileSave, false );
 sourceActionRun.addEventListener('click', handleFileRun, false);
 
 socket.on('connect', function() {
@@ -66,10 +71,15 @@ socket.on('disconnect', function() {
 socket.on('ready', function(data) {
     window.console.log(data);
     addToTerminal(data.output, 'welcome');
+    editor.setValue(data.fileContent);
     handleFileRun();
 });
 
 socket.on('terminalOutput', function(data) {
     window.console.log(data);
     addToTerminal(data.output, 'output');
+});
+
+socket.on('fileSaveComplete', function(data) {
+    alert(data.result);
 });

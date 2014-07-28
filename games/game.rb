@@ -34,3 +34,7 @@ def bar_sit
     bar_sit()
   end
 end
+
+def table_sit
+  
+end
