@@ -1,8 +1,13 @@
 var editor = ace.edit("game-rb-editor");
 editor.setTheme("ace/theme/monokai");
+editor.getSession().setFoldStyle('manual');
 editor.getSession().setMode("ace/mode/ruby");
 editor.getSession().setTabSize(2);
 editor.getSession().setUseSoftTabs(true);
+editor.setDisplayIndentGuides(true);
+editor.setHighlightActiveLine(true);
+editor.setShowPrintMargin(false);
+editor.setShowInvisibles(true);
 
 var toggleConnectionStatus = function(display) {
     var connStatus = document.getElementById('conn-status');
