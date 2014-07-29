@@ -9,17 +9,20 @@ var tones = io.of('/ruby').on('connection', function(socket) {
 
     ruby.stdout.pause();
 
+    ruby.stdout.setEncoding('utf8');
+    ruby.stderr.setEncoding('utf8');
+
     ruby.stdout.on('data', function(data) {
         console.log('stdout: ' + data);
         socket.emit('terminalOutput', {
-            output: data.toString()
+            output: data
         });
     });
 
     ruby.stderr.on('data', function(data) {
         console.log('stderr: ' + data);
         socket.emit('terminalOutput', {
-            output: data.toString()
+            output: data
         });
     });
 
