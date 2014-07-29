@@ -7,6 +7,8 @@ var tones = io.of('/ruby').on('connection', function(socket) {
 
     var ruby = spawn('irb');
 
+    ruby.stdout.pause();
+
     ruby.stdout.on('data', function(data) {
         console.log('stdout: ' + data);
         socket.emit('terminalOutput', {
@@ -34,6 +36,7 @@ var tones = io.of('/ruby').on('connection', function(socket) {
     });
 
     socket.on('terminalInput', function(data) {
+        ruby.stdout.resume();
         console.log(data);
         ruby.stdin.write(data.input + '\n');
     });

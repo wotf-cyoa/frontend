@@ -72,7 +72,8 @@ socket.on('ready', function(data) {
     window.console.log(data);
     addToTerminal(data.output, 'welcome');
     editor.setValue(data.fileContent);
-    handleFileRun();
+    editor.gotoLine(0);
+    //handleFileRun();
 });
 
 socket.on('terminalOutput', function(data) {
