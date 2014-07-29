@@ -4,6 +4,7 @@ editor.getSession().setFoldStyle('manual');
 editor.getSession().setMode("ace/mode/ruby");
 editor.getSession().setTabSize(2);
 editor.getSession().setUseSoftTabs(true);
+editor.getSession().setUseWrapMode(true);
 editor.setDisplayIndentGuides(true);
 editor.setHighlightActiveLine(true);
 editor.setShowPrintMargin(false);

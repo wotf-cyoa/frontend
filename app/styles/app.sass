@@ -56,7 +56,7 @@ span.warning
   padding: 6px 0 6px 27px
   color: $fg-color
   font-family: Consolas, sans-serif
-  font-size: 100%
+  font-size: 20px
   background-color: $bg-color
   border: none
 
@@ -65,13 +65,14 @@ span.warning
   outline: none
 
 #terminal-prompt
-  padding: 6px 0
+  padding: 4px 0
   display: block
   margin-top: -30px
 
 #terminal .outputs
-  padding: 6px 4px
+  padding: 6px 0
   font-size: 20px
+  line-height: 1.4
 
 #terminal .outputs-welcome
   color: #8888bb
@@ -149,6 +150,34 @@ span.warning
 
 #source-actions
   float: right
+  margin-top: -14px
+
+#source-actions button
+  display: inline-block
+  padding: 6px 12px
+  margin-bottom: 0
+  font-size: 14px
+  font-weight: 400
+  line-height: 1.42857143
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  cursor: pointer
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  background-image: none
+  border: 1px solid transparent
+  border-radius: 4px
+  color: #333
+  background-color: #fff
+  border-color: #ccc
+
+#source-actions button:hover
+  color: #333
+  background-color: #e6e6e6
+  border-color: #adadad
 
 #game-rb-editor
   font-size: 14px
