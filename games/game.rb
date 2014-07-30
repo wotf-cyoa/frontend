@@ -1,5 +1,8 @@
+$game_name = "Wizarding Rubies"
+$character_name = "Magey Wizard"
+
 def start
-  puts "Welcome to my inn! Grab a seat friend."
+  puts "Welcome to my inn, " + $character_name + "! Grab a seat."
   puts "1. Take a seat at the bar"
   puts "2. Take a seat away from the crowd"
   puts "3. Leave the inn"
