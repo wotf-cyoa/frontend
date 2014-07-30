@@ -5,18 +5,19 @@ var app = require('http').createServer(),
 
 var tones = io.of('/ruby').on('connection', function(socket) {
 
-    var ruby = spawn('irb');
-
-    ruby.stdout.pause();
+    var ruby = spawn('irb'),
+        socketOn = false;
 
     ruby.stdout.setEncoding('utf8');
     ruby.stderr.setEncoding('utf8');
 
     ruby.stdout.on('data', function(data) {
         console.log('stdout: ' + data);
-        socket.emit('terminalOutput', {
-            output: data
-        });
+        if (socketOn) {
+          socket.emit('terminalOutput', {
+              output: data
+          });
+        }
     });
 
     ruby.stderr.on('data', function(data) {
@@ -31,6 +32,7 @@ var tones = io.of('/ruby').on('connection', function(socket) {
     });
 
     socket.on('fileInput', function(data) {
+        socketOn = false;
         console.log(data);
         ruby.stdin.write('exec($0)\n');
         setTimeout(function() {
@@ -39,7 +41,7 @@ var tones = io.of('/ruby').on('connection', function(socket) {
     });
 
     socket.on('terminalInput', function(data) {
-        ruby.stdout.resume();
+        socketOn = true;
         console.log(data);
         ruby.stdin.write(data.input + '\n');
     });
