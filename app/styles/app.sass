@@ -47,16 +47,17 @@ span.warning
   border-left: 2px solid $border-color
   border-right: 1px solid $border-color
   padding: 15px 10px
-  font-family: Consolas, sans-serif
+  font-family: $terminal-font-family
+  font-size: $terminal-font-size
   overflow-y: auto
 
 #terminal-input
   width: 100%
   margin: 0
-  padding: 6px 0 6px 27px
+  padding: 6px 0 6px 33px
   color: $fg-color
   font-family: Consolas, sans-serif
-  font-size: 20px
+  font-size: 100%
   background-color: $bg-color
   border: none
 
@@ -65,13 +66,14 @@ span.warning
   outline: none
 
 #terminal-prompt
-  padding: 4px 0
+  padding: 2px 0
   display: block
   margin-top: -30px
+  font-size: 100%
 
 #terminal .outputs
   padding: 6px 0
-  font-size: 20px
+  font-size: 100%
   line-height: 1.4
 
 #terminal .outputs-welcome

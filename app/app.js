@@ -5,7 +5,7 @@ editor.getSession().setMode("ace/mode/ruby");
 editor.getSession().setTabSize(2);
 editor.getSession().setUseSoftTabs(true);
 editor.getSession().setUseWrapMode(true);
-editor.setDisplayIndentGuides(true);
+editor.setDisplayIndentGuides(false);
 editor.setHighlightActiveLine(true);
 editor.setShowPrintMargin(false);
 editor.setShowInvisibles(true);
