@@ -1,0 +1,49 @@
+#terminal
+  position: absolute
+  left: 0
+  right: 50%
+  top: 50px
+  bottom: 100px
+  border-left: 2px solid $border-color
+  border-right: 1px solid $border-color
+  padding: 15px 10px
+  font-family: $terminal-font-family
+  font-size: $terminal-font-size
+  overflow-y: auto
+
+#terminal-input
+  width: 100%
+  margin: 0
+  padding: 6px 0 6px 33px
+  color: $fg-color
+  font-family: Consolas, sans-serif
+  font-size: 100%
+  background-color: $bg-color
+  border: none
+
+#terminal-input:focus,
+#terminal-input:active
+  outline: none
+
+#terminal-prompt
+  padding: 2px 0
+  display: block
+  margin-top: -30px
+  font-size: 100%
+
+#terminal .outputs
+  padding: 6px 0
+  font-size: 100%
+  line-height: 1.4
+
+#terminal .outputs-welcome
+  color: #8888bb
+
+#terminal .outputs-input
+  color: #88bb88
+
+#terminal .outputs-input:before
+  content: '>> '
+
+#terminal .outputs-output
+  color: #bb88bb
