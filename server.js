@@ -3,7 +3,7 @@ var app = require('http').createServer(),
     spawn = require('child_process').spawn,
     fs = require('fs');
 
-var tones = io.of('/ruby').on('connection', function(socket) {
+io.of('/ruby').on('connection', function(socket) {
 
     var ruby = spawn('irb'),
         socketOn = false;

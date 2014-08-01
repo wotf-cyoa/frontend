@@ -1,5 +1,5 @@
-var editor = ace.edit("game-rb-editor");
-editor.setTheme("ace/theme/monokai");
+var editor = ace.edit('game-rb-editor');
+editor.setTheme('ace/theme/monokai');
 editor.getSession().setFoldStyle('manual');
 editor.getSession().setMode("ace/mode/ruby");
 editor.getSession().setTabSize(2);
