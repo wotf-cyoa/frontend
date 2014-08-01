@@ -16,20 +16,6 @@ var toggleConnectionStatus = function(className, message) {
     messageBanner.children[0].innerHTML = message;
 };
 
-var flashBannerMessage = function(className, message) {
-    var messageBanner = document.getElementById('message-banner'),
-        messageClass = messageBanner.children[0].className,
-        messageText = messageBanner.children[0].innerHTML;
-
-    messageBanner.children[0].className = className;
-    messageBanner.children[0].innerHTML = message;
-
-    window.setTimeout(function() {
-        messageBanner.children[0].className = messageClass;
-        messageBanner.children[0].innerHTML = messageText;
-    }, 1500);
-};
-
 var addToTerminal = function(value, type) {
     if (type === 'output' && value.indexOf('()') > -1) return;
     var classes = 'outputs outputs-' + type;
@@ -53,15 +39,16 @@ var handleterminalInput = function(event) {
     }
 };
 
-var handleFileRun = function() {
+var handleFileLoad = function() {
     var currentFileContent = editor.getValue();
-    socket.emit('fileInput', { input: currentFileContent });
-    addToTerminal('Running game...', 'input');
+    socket.emit('fileLoad', { input: currentFileContent });
+    addToTerminal('Loading game...', 'status');
 };
 
 var handleFileSave = function() {
     var currentFileContent = editor.getValue();
     socket.emit('fileSave', { fileContent: currentFileContent });
+    addToTerminal('Saving game code...', 'status');
 };
 
 var socket = io('http://localhost:8888/ruby'),
@@ -69,11 +56,11 @@ var socket = io('http://localhost:8888/ruby'),
     terminalOutputs = document.getElementById('terminal-outputs'),
     terminalInput = document.getElementById('terminal-input'),
     sourceActionSave = document.getElementById('source-action-save'),
-    sourceActionRun = document.getElementById('source-action-run');
+    sourceActionLoad = document.getElementById('source-action-load');
 
 terminal.addEventListener('click', function(e) { terminalInput.focus() }, false);
 sourceActionSave.addEventListener('click', handleFileSave, false );
-sourceActionRun.addEventListener('click', handleFileRun, false);
+sourceActionLoad.addEventListener('click', handleFileLoad, false);
 
 socket.on('connect', function() {
     toggleConnectionStatus('success', 'Server Connected');
@@ -87,10 +74,9 @@ socket.on('disconnect', function() {
 
 socket.on('ready', function(data) {
     window.console.log(data);
-    addToTerminal(data.output, 'welcome');
+    addToTerminal(data.output, 'status');
     editor.setValue(data.fileContent);
     editor.gotoLine(0);
-    //handleFileRun();
 });
 
 socket.on('terminalOutput', function(data) {
@@ -99,5 +85,9 @@ socket.on('terminalOutput', function(data) {
 });
 
 socket.on('fileSaved', function(data) {
-    flashBannerMessage('info', data.result);
+    addToTerminal(data.output, 'status');
+});
+
+socket.on('fileLoaded', function(data) {
+    addToTerminal(data.output, 'status');
 });

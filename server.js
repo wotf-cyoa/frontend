@@ -31,12 +31,15 @@ io.of('/ruby').on('connection', function(socket) {
         console.log('Exit code: ' + code);
     });
 
-    socket.on('fileInput', function(data) {
+    socket.on('fileLoad', function(data) {
         socketOn = false;
         console.log(data);
         ruby.stdin.write('exec($0)\n');
         setTimeout(function() {
             ruby.stdin.write(data.input + '\n');
+            socket.emit('fileLoaded', {
+              output: 'Loaded!'
+            });
         }, 1000);
     });
 
@@ -50,7 +53,7 @@ io.of('/ruby').on('connection', function(socket) {
         console.log(data);
         fs.writeFile('games/game.rb', data.fileContent, function(err) {
             socket.emit('fileSaved', {
-                result: err || 'File saved.'
+                output: err || 'Saved!'
             });
         });
     });
@@ -58,7 +61,7 @@ io.of('/ruby').on('connection', function(socket) {
     fs.readFile('games/game.rb', function(err, contents) {
         console.log(contents);
         socket.emit('ready', {
-            output: 'Shell ready!',
+            output: 'Ready!',
             fileContent: contents.toString()
         });
     });
