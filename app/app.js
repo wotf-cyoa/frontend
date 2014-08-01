@@ -16,6 +16,20 @@ var toggleConnectionStatus = function(className, message) {
     messageBanner.children[0].innerHTML = message;
 };
 
+var flashBannerMessage = function(className, message) {
+    var messageBanner = document.getElementById('message-banner'),
+        messageClass = messageBanner.children[0].className,
+        messageText = messageBanner.children[0].innerHTML;
+
+    messageBanner.children[0].className = className;
+    messageBanner.children[0].innerHTML = message;
+
+    window.setTimeout(function() {
+        messageBanner.children[0].className = messageClass;
+        messageBanner.children[0].innerHTML = messageText;
+    }, 1500);
+};
+
 var addToTerminal = function(value, type) {
     var classes = 'outputs outputs-' + type;
     value = value.replace(/&/g, '&amp;')
@@ -83,6 +97,6 @@ socket.on('terminalOutput', function(data) {
     addToTerminal(data.output, 'output');
 });
 
-socket.on('fileSaveComplete', function(data) {
-    alert(data.result);
+socket.on('fileSaved', function(data) {
+    flashBannerMessage('info', data.result);
 });

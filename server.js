@@ -49,7 +49,7 @@ var tones = io.of('/ruby').on('connection', function(socket) {
     socket.on('fileSave', function(data) {
         console.log(data);
         fs.writeFile('games/game.rb', data.fileContent, function(err) {
-            socket.emit('fileSaveComplete', {
+            socket.emit('fileSaved', {
                 result: err || 'File saved.'
             });
         });
