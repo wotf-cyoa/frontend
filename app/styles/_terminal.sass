@@ -1,11 +1,12 @@
 #terminal
   position: absolute
-  left: 0
-  right: 50%
+  left: $terminal-border-left
+  right: $terminal-border-right
   top: 50px
-  bottom: 100px
+  bottom: 0
   border-left: 2px solid $border-color
   border-right: 1px solid $border-color
+  border-bottom: 2px solid $border-color
   padding: 15px 10px
   font-family: $terminal-font-family
   font-size: $terminal-font-size
@@ -14,9 +15,9 @@
 #terminal-input
   width: 100%
   margin: 0
-  padding: 6px 0 6px 33px
+  padding: 6px 0 6px 27px
   color: $fg-color
-  font-family: Consolas, sans-serif
+  font-family: $terminal-font-family
   font-size: 100%
   line-height: $terminal-line-height
   background-color: $bg-color
@@ -29,7 +30,7 @@
 #terminal-prompt
   padding: 0
   display: block
-  margin-top: -30px
+  margin-top: -24px
   font-size: 100%
 
 #terminal .outputs
@@ -41,10 +42,10 @@
   color: #8888bb
 
 #terminal .outputs-input
-  color: #88bb88
+  color: #bb88bb
 
 #terminal .outputs-input:before
   content: '>> '
 
 #terminal .outputs-output
-  color: #bb88bb
+  color: #88bb88
