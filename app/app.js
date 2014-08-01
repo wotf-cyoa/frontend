@@ -73,14 +73,12 @@ socket.on('disconnect', function() {
 });
 
 socket.on('ready', function(data) {
-    window.console.log(data);
     addToTerminal(data.output, 'status');
     editor.setValue(data.fileContent);
     editor.gotoLine(0);
 });
 
 socket.on('terminalOutput', function(data) {
-    window.console.log(data);
     addToTerminal(data.output, 'output');
 });
 
