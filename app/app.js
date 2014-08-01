@@ -10,9 +10,10 @@ editor.setHighlightActiveLine(true);
 editor.setShowPrintMargin(false);
 editor.setShowInvisibles(true);
 
-var toggleConnectionStatus = function(display) {
-    var connStatus = document.getElementById('conn-status');
-    connStatus.innerHTML = display;
+var toggleConnectionStatus = function(className, message) {
+    var messageBanner = document.getElementById('message-banner');
+    messageBanner.children[0].className = className;
+    messageBanner.children[0].innerHTML = message;
 };
 
 var addToTerminal = function(value, type) {
@@ -60,12 +61,12 @@ sourceActionSave.addEventListener('click', handleFileSave, false );
 sourceActionRun.addEventListener('click', handleFileRun, false);
 
 socket.on('connect', function() {
-    toggleConnectionStatus('<span class="success">Server Connected</span>');
+    toggleConnectionStatus('success', 'Server Connected');
     terminalInput.addEventListener('keypress', handleterminalInput, false);
 });
 
 socket.on('disconnect', function() {
-    toggleConnectionStatus('<span class="warning">Server Disconnected</span>');
+    toggleConnectionStatus('warning', 'Server Disconnected');
     terminalInput.removeEventListener('keypress', handleterminalInput, false);
 });
 
