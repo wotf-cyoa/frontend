@@ -53,17 +53,19 @@ var socket = io('http://localhost:8888/ruby'),
     sourceActionLoad = document.getElementById('source-action-load');
 
 terminal.addEventListener('click', function(e) { terminalInput.focus() }, false);
-sourceActionSave.addEventListener('click', handleFileSave, false );
-sourceActionLoad.addEventListener('click', handleFileLoad, false);
 
 socket.on('connect', function() {
     addToTerminal('Server connected', 'status');
     terminalInput.addEventListener('keypress', handleterminalInput, false);
+    sourceActionSave.addEventListener('click', handleFileSave, false );
+    sourceActionLoad.addEventListener('click', handleFileLoad, false);
 });
 
 socket.on('disconnect', function() {
     addToTerminal('Server disconnected', 'status');
     terminalInput.removeEventListener('keypress', handleterminalInput, false);
+    sourceActionSave.removeEventListener('click', handleFileSave, false );
+    sourceActionLoad.removeEventListener('click', handleFileLoad, false);
 });
 
 socket.on('ready', function(data) {
