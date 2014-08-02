@@ -2,7 +2,7 @@
   position: absolute
   left: $terminal-border-left
   right: $terminal-border-right
-  top: 50px
+  top: $source-terminal-top
   bottom: 0
   border-left: 2px solid $border-color
   border-right: 1px solid $border-color
@@ -39,13 +39,16 @@
   line-height: $terminal-line-height
 
 #terminal .outputs-status
-  color: #8888bb
+  color: #2ecc71
 
 #terminal .outputs-input
-  color: #bb88bb
+  color: #cc66cc
 
 #terminal .outputs-input:before
   content: '>> '
 
 #terminal .outputs-output
-  color: #88bb88
+  color: #e6db74
+
+#terminal .outputs-error
+  color: #ff4d4d
