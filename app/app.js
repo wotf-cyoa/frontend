@@ -79,7 +79,12 @@ socket.on('ready', function(data) {
 });
 
 socket.on('terminalOutput', function(data) {
-    addToTerminal(data.output, 'output');
+    if (data.output.indexOf('Error') > -1) addToTerminal(data.output, 'error');
+    else addToTerminal(data.output, 'output');
+});
+
+socket.on('terminalError', function(data) {
+    addToTerminal(data.output, 'error');
 });
 
 socket.on('fileSaved', function(data) {

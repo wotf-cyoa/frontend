@@ -22,7 +22,7 @@ io.of('/ruby').on('connection', function(socket) {
 
     ruby.stderr.on('data', function(data) {
         console.log('stderr: ' + data);
-        socket.emit('terminalOutput', {
+        socket.emit('terminalError', {
             output: data
         });
     });
