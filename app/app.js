@@ -62,7 +62,7 @@ socket.on('connect', function() {
 });
 
 socket.on('disconnect', function() {
-    addToTerminal('Server disconnected', 'status');
+    addToTerminal('Server disconnected', 'error');
     terminalInput.removeEventListener('keypress', handleterminalInput, false);
     sourceActionSave.removeEventListener('click', handleFileSave, false );
     sourceActionLoad.removeEventListener('click', handleFileLoad, false);
