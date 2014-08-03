@@ -11,19 +11,21 @@
 <body>
   <div class="container">
     <div id="terminal">
-      <div id="terminal-outputs"></div>
-      <input id="terminal-input" type="text" autofocus>
-      <span id="terminal-prompt">&gt;&gt; </span>
+      <h1>Terminal</h1>
+      <div id="terminal-content">
+        <div id="terminal-outputs"></div>
+        <input id="terminal-input" type="text" autofocus>
+        <span id="terminal-prompt">&gt;&gt; </span>
+      </div>
     </div>
     <div id="source">
-      <div class="source-file">
-        <input type="radio" id="game-rb" name="source-files" checked>
-        <label for="game-rb">game.rb</label>
-        <div id="game-rb-editor" class="source-file-content"></div>
-      </div>
+      <h1>Code Editor</h1>
       <div id="source-actions">
         <button id="source-action-save">Save</button>
         <button id="source-action-load">Load</button>
+      </div>
+      <div class="source-file">
+        <div id="game-rb-editor" class="source-file-content"></div>
       </div>
     </div>
   </div>
