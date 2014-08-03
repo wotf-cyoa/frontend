@@ -13,7 +13,7 @@
     color: #333;
     background-image: url('images/background.png');
   }
-  a {
+  a.button {
     width: 150px;
     height: 150px;
     border-radius: 100%;
@@ -23,7 +23,7 @@
     box-shadow: 0px 0px 10px #000;
     vertical-align: bottom;
   }
-  a:hover {
+  a:hover.button {
     background-color: #c94d5b;
     box-shadow: 0px 0px 6px #000;
     -webkit-transform: translateX(1px) translateY(1px);
@@ -41,18 +41,59 @@
   h1, h2, h3 {
     text-align: center;
   }
+  footer {
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    margin-top: 200px;
+    text-align: center;
+  }
+  footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+  }
+  footer ul li {
+    font-size: 1.2em;
+    float: left;
+    padding: 10px 20px 10px;
+  }
+  footer ul li a {
+    text-decoration: none;
+  }
+  footer ul li a:hover {
+    color: #f90329;
+  }
   .center {
     text-align: center;
+  }
+  .wizard {
+    background-image: url('images/kitty-mage.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 150px;
   }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Wizards of the Future: Code Your Own Adventure</h1>
-
     <h2>The code beckons to you, future wizard.</h2>
-    <div style="background-image: url('images/mage.png'); background-repeat: no-repeat; background-position: center center; height: 150px;"><a href="/sandbox"></a></div>
+    <div class="wizard"><a href="/sandbox" class="button"></a></div>
     <h3>Click to enter</h3>
   </div>
+  <footer>
+    <ul>
+      <li><strong>Resources</strong></li>
+      <li><a href="http://www.codecademy.com/en/tracks/ruby">Codecademy, Ruby</a></li>
+      <li><a href="http://tryruby.org/levels/1/challenges/0">Code School, Try Ruby</a></li>
+      <li><a href="http://kidsruby.com/">Kids Ruby</a></li>
+      <li><a href="http://railsgirls.com/">Rails Girls Conference</a></li>
+      <li><strong>By Michal &amp; Rachel</strong></li>
+    </ul>
+  </footer>
 </body>
 </html>
