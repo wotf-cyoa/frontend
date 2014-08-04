@@ -9,6 +9,8 @@
     "dependencies": {
         "socket.io": "1.0.x",
 
+        "express": "3.4.x",
+
         "javascript-brunch": ">= 1.0 < 1.8",
 
         "css-brunch": ">= 1.0 < 1.8",
