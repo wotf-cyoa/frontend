@@ -3,21 +3,24 @@
   left: $terminal-border-left
   right: $terminal-border-right
   top: $sandbox-top
-  bottom: $sandbox-bottom
+  bottom: $terminal-bottom
   border-top: 2px solid $border-color
   border-left: 2px solid $border-color
   border-right: 1px solid $border-color
-  border-bottom: 2px solid $border-color
   font-family: $terminal-font-family
   font-size: $terminal-font-size
-  overflow-y: auto
 
 #terminal h1
   border-bottom: 1px solid $border-color
 
 #terminal-content
   padding: 8px 14px
-  margin-bottom: 200px
+  position: absolute
+  top: 41px
+  bottom: 0
+  left: 0
+  right: 0
+  overflow-y: auto
 
 #terminal-input
   width: 100%
@@ -59,36 +62,3 @@
 
 #terminal .outputs-error
   color: #e07a77
-
-#terminal-help
-  position: absolute
-  bottom: $sandbox-bottom
-  width: 100%
-
-#terminal-help img,
-#terminal-help ul
-  padding: 8px 14px
-  float: left
-
-#terminal-help img
-  width: 35%
-  height: auto
-
-#terminal-help ul
-  padding: 34px 12px
-  width: 65%
-
-#terminal-help li
-  padding: 4px 0
-  line-height: 1.4
-
-#terminal-help button
-  padding: 2px 5px
-  margin: 0
-  margin-bottom: 1px
-  font-size: 12px
-
-#terminal-help span.code
-  color: #C94D5B
-  padding: 0 5px
-
