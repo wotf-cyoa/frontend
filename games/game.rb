@@ -1,5 +1,5 @@
 def start
-  puts "Welcome to my inn, Rachel! Grab a seat."
+  puts "Welcome to my inn, Stranger! Grab a seat."
   puts "1. Take a seat at the bar"
   puts "2. Take a seat away from the crowd"
 
