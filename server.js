@@ -4,7 +4,7 @@ var app = require('http').createServer(),
     spawn = require('child_process').spawn,
     fs = require('fs');
 
-exec('IRBRC=‘irb.rc’ irb', function(error, stdout, stderr) {
+exec('IRBRC=\'irb.rc\' irb', function(error, stdout, stderr) {
     console.log(error);
     console.log(stdout);
     console.log(stderr);
