@@ -7,7 +7,7 @@ var socket = require('http').createServer(),
 var express = require('express'),
     app = express();
 
-exec('brunch b', function(error, stdout, stderr) {
+exec('./node_modules/brunch/bin/brunch b', function(error, stdout, stderr) {
     console.log(error);
     console.log(stdout);
     console.log(stderr);

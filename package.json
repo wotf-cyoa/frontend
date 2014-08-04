@@ -11,6 +11,8 @@
 
         "express": "3.4.x",
 
+        "brunch" : "1.7.x",
+
         "javascript-brunch": ">= 1.0 < 1.8",
 
         "css-brunch": ">= 1.0 < 1.8",
