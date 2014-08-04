@@ -1,5 +1,5 @@
 def start
-  puts "Welcome to my inn, Stranger! Grab a seat."
+  puts "Welcome to my inn, Rachel! Grab a seat."
   puts "1. Take a seat at the bar"
   puts "2. Take a seat away from the crowd"
 
@@ -7,8 +7,10 @@ def start
 
   if action == "1"
     puts "You sit down at the bar."
+
   elsif action == "2"
     puts "You sit down at an empty corner table."
+    
   else
     puts "Invalid option."
     start()
