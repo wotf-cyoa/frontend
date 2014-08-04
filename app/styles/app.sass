@@ -5,3 +5,27 @@
 @import terminal
 @import help
 @import source
+
+@media all and (max-width: 1260px)
+  #help
+    height: 130px
+  #terminal
+    bottom: 130px
+  #help img
+    width: 140px
+  #help ul
+    width: 220px
+    font-size: 12px
+    padding: 5px 6px
+
+@media all and (max-width: 960px)
+  html,
+  body
+    overflow-x: auto
+    width: 960px
+  #terminal,
+  #help
+    width: 365px
+  #source
+    width: 595px
+    left: 365px
