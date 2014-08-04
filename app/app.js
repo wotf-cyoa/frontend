@@ -75,8 +75,10 @@ socket.on('ready', function(data) {
 });
 
 socket.on('terminalOutput', function(data) {
-    if (data.output.indexOf('Error') > -1) addToTerminal(data.output, 'error');
-    else addToTerminal(data.output, 'output');
+    //if (data.output.indexOf('Error') > -1 || data.output.indexOf('undefined') > -1)
+    //    addToTerminal(data.output, 'error');
+    //else addToTerminal(data.output, 'output');
+    addToTerminal(data.output, 'output');
 });
 
 socket.on('terminalError', function(data) {
