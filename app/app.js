@@ -38,8 +38,11 @@ var handleCodeBuild = function() {
     socket.emit('codeBuild', { fileContent: currentFileContent });
 };
 
+console.log('Hash: ' + window.location.hash);
+console.log('Local before: ' + localStorage.getItem('userid'));
 var userid = window.location.hash.replace(/#/, '') || localStorage.getItem('userid') || '';
 localStorage.setItem('userid', userid);
+console.log('Local after: ' + localStorage.getItem('userid'));
 
 // Set socket URL based on environment
 var socketURL = 'http://wotf-cyoa.herokuapp.com:80/ruby';
@@ -76,7 +79,7 @@ socket.on('ready', function(data) {
 
 socket.on('confirmUserid', function(data) {
     localStorage.setItem('userid', data.userid);
-    window.location.hash = data.userid;
+    window.location.replace(data.userid);
 });
 
 socket.on('terminalOutput', function(data) {
