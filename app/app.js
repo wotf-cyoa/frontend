@@ -11,7 +11,6 @@ editor.setShowPrintMargin(false);
 editor.setShowInvisibles(true);
 
 var addToTerminal = function(value, type) {
-    if (type === 'output' && value.indexOf('()') > -1) return;
     var classes = 'outputs outputs-' + type;
     value = value.replace(/&/g, '&amp;')
                  .replace(/>/g, '&gt;')
