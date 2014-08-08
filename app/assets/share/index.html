@@ -22,8 +22,6 @@
   </div>
   <script src="//cdn.socket.io/socket.io-1.0.0.js"></script>
   <script>
-  localStorage.setItem('userid', '');
-
   var addToTerminal = function(value, type) {
       var classes = 'outputs outputs-' + type;
       value = value.replace(/&/g, '&amp;')
@@ -80,6 +78,10 @@
       addToTerminal(data.output, 'status');
   });
 
+  socket.on('clearUserid', function() {
+      localStorage.setItem('userid', '');
+      socket.emit('clearUseridDone', localStorage.getItem('userid'));
+  });
 
   </script>
 </body>
