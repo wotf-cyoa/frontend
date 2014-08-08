@@ -1,0 +1,32 @@
+#share
+  position: absolute
+  top: $sandbox-top
+  left: 0
+  right: 0
+  bottom: 0
+  border: 1px solid $border-color
+  font-family: $terminal-font-family
+  font-size: $terminal-font-size
+
+#share #terminal-content
+  top: 10px
+
+#share .outputs
+  padding: 6px 0
+  font-size: 100%
+  line-height: $terminal-line-height
+
+#share .outputs-status
+  color: #77e07a
+
+#share .outputs-input
+  color: #7a77e0
+
+#share .outputs-input:before
+  content: '>> '
+
+#share .outputs-output
+  color: #e6db74
+
+#share .outputs-error
+  color: #e07a77
