@@ -49,3 +49,29 @@ button
   color: $bg-color
   background-color: $fg-color
   border-color: $border-color
+
+.nav-back
+  position: absolute
+  top: 0
+  left: 0
+  padding: 8px 12px
+  height: $sandbox-top
+
+.nav-back a
+  color: $fg-color
+  text-decoration: none
+  line-height: 100px
+  height: 100%
+  display: block
+  vertical-align: top
+  &:hover,
+  &:active
+    color: darken($fg-color, 5%)
+
+
+span.back-arrow
+  font-size: 200%
+  line-height: 100px
+  height: 100%
+  display: inline-block
+  vertical-align: top
